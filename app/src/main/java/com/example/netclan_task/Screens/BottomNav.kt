@@ -131,7 +131,7 @@ fun MyTopBar(navController: NavHostController, scope: CoroutineScope, drawerStat
 
     )
 }
-
+// dummy 2
 // This is comment on dummy  branch
 @Composable
 fun MyBottomBar(navController1: NavHostController){
