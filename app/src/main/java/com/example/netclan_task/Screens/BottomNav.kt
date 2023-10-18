@@ -132,7 +132,7 @@ fun MyTopBar(navController: NavHostController, scope: CoroutineScope, drawerStat
     )
 }
 
-// This is comment on dummy  branch
+// This is comment on dummy error branch
 @Composable
 fun MyBottomBar(navController1: NavHostController){
     val backStackEntry=navController1.currentBackStackEntryAsState()
