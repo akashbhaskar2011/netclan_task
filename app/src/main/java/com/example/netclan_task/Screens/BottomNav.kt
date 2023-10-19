@@ -100,8 +100,7 @@ fun MyTopBar(navController: NavHostController, scope: CoroutineScope, drawerStat
                     drawerState.apply {
                         if(isClosed) {
                             open()
-
-                        } else close()
+                        } else{ close()}
                     }
                 }
             }

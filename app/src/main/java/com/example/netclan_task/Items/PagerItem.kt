@@ -95,20 +95,20 @@ fun PagerWithTabs() {
     }
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
-@Composable
-fun Splash1(navController: NavController) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        PagerWithTabs()
-    }
-
-    LaunchedEffect(true) {
-        delay(1000)
-        navController.navigate(Routes.BottomNav.routes)
-    }
-}
+//@OptIn(ExperimentalComposeUiApi::class)
+//@Composable
+//fun Splash1(navController: NavController) {
+//    Column(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .padding(16.dp),
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//        PagerWithTabs()
+//    }
+//
+//    LaunchedEffect(true) {
+//        delay(1000)
+//        navController.navigate(Routes.BottomNav.routes)
+//    }
+//}
