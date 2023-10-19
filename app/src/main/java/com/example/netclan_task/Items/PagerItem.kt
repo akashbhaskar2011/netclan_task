@@ -1,89 +1,114 @@
-package com.example.netclan_task.Items
-
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.TabRow
-import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.*
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.netclan_task.Navigations.Routes
+import com.example.netclan_task.Screens.ThreeBounceAnimation
+import kotlinx.coroutines.delay
 
-@ExperimentalFoundationApi
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class,
+    ExperimentalMaterial3Api::class
+)
 @Composable
-fun HorizontalPagerTabRowSample() {
-    val pagerState = rememberPagerState(
-        initialPage = 0,
-        initialPageOffsetFraction = 0f
-    ) {
-        5
-    }
-    val pages = (1..5).map { "Page $it" }
-    val scrollCoroutineScope = rememberCoroutineScope()
+fun PagerWithTabs() {
+    var selectedTab by remember { mutableStateOf(0) }
+
+    val pagerState = rememberPagerState(pageCount = {
+        4
+    })
 
     Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(horizontal = 32.dp)
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // Top App Bar with Tabs
+        TopAppBar(
+            title = {
+                Text(text = "Pager with Tabs")
+            },
+//            backgroundColor = Color.Blue,
+        )
+
+        // Tabs
         TabRow(
-            selectedTabIndex = pagerState.currentPage,
+            selectedTabIndex = selectedTab,
+            modifier = Modifier.fillMaxWidth(),
             indicator = { tabPositions ->
                 TabRowDefaults.Indicator(
-                    Modifier
-                        .tabIndicatorOffset(tabPositions[pagerState.currentPage])
+                    modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTab])
                 )
-            },
+            }
         ) {
-            pages.forEachIndexed { index, title ->
-                Text(text = title,
-                    modifier = Modifier
-                        .clickable {
-                            scrollCoroutineScope.launch {
-                                pagerState.animateScrollToPage(index)
-                            }
-                        }
-                        .padding(8.dp))
+//            Tab(
+//                text ={ text = "Tab 1") },
+//                onClick = { selectedTab = 0 }
+//            )
+//            Tab(
+//                text = { Text(text = "Tab 2") },
+//                onClick = { selectedTab = 1 }
+//            )
+//            Tab(
+//                text = { Text(text = "Tab 3") },
+//                onClick = { selectedTab = 2 }
+//            )
+        }
+
+        // Pager
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier
+                .fillMaxSize()
+                .weight(1f)
+        ) { page ->
+            when (page) {
+                0 -> {
+                    // Content for Tab 1
+                    Text(text = "Tab 1 Content")
+                }
+                1 -> {
+                    // Content for Tab 2
+                    Text(text = "Tab 2 Content")
+                }
+                2 -> {
+                    // Content for Tab 3
+                    Text(text = "Tab 3 Content")
+                }
             }
         }
 
-//        HorizontalPager(
-//            pageCount = 5,
-//            state = pagerState,
-//            pageSpacing = 8.dp
-//        ) { page ->
-//            Text(
-//                text = pages[page],
-//                textAlign = TextAlign.Center,
-//                modifier = Modifier
-//                    .background(Color.LightGray)
-//                    .fillMaxWidth()
-//                    .padding(32.dp)
-//            )
-        }
+        ThreeBounceAnimation()
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(text = "NetClan")
     }
-//}
+}
 
-//https://medium.com/@domen.lanisnik/exploring-the-official-pager-in-compose-8c2698c49a98
-
-
-@OptIn(ExperimentalFoundationApi::class)
-@Preview
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun vie1(){
-    HorizontalPagerTabRowSample()
+fun Splash1(navController: NavController) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        PagerWithTabs()
+    }
+
+    LaunchedEffect(true) {
+        delay(1000)
+        navController.navigate(Routes.BottomNav.routes)
+    }
 }

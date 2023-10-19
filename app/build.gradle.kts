@@ -69,6 +69,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
 
+    implementation ("androidx.paging:paging-compose:1.0.0-alpha13")  // Use the latest version
 
     implementation ("androidx.drawerlayout:drawerlayout:1.2.0")
     implementation ("androidx.navigation:navigation-compose:2.7.4")

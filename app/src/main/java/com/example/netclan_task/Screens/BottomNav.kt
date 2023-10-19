@@ -52,7 +52,7 @@ fun MyBottomNav(navController :NavHostController) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
         ModalNavigationDrawer(
-            modifier = Modifier.zIndex(1f),
+//            modifier = Modifier.zIndex(1f),
             drawerState = drawerState,
             drawerContent = {
                 ModalDrawerSheet { NavDrawerItem()}
@@ -74,6 +74,7 @@ fun MyBottomNav(navController :NavHostController) {
         composable(route = Routes.Chat.routes){
 
         }
+
     }
     }
 }
@@ -97,7 +98,10 @@ fun MyTopBar(navController: NavHostController, scope: CoroutineScope, drawerStat
 
                 scope.launch {
                     drawerState.apply {
-                        if(isClosed) open() else close()
+                        if(isClosed) {
+                            open()
+
+                        } else close()
                     }
                 }
             }
@@ -164,3 +168,5 @@ fun MyBottomBar(navController1: NavHostController){
         }
     }
 }
+
+
