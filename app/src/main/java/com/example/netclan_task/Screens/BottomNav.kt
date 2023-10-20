@@ -44,7 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.example.netclan_task.Items.MyTab
 import com.example.netclan_task.Items.MyTab2
-import com.example.netclan_task.Items.NavDrawerItem
+//import com.example.netclan_task.Items.NavDrawerItem
 import com.example.netclan_task.Model.DrawerItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -61,7 +61,7 @@ fun MyBottomNav(navController :NavHostController) {
 //            modifier = Modifier.zIndex(1f),
             drawerState = drawerState,
             drawerContent = {
-                ModalDrawerSheet { NavDrawerItem()}
+                ModalDrawerSheet { NavDrawerItem(navController)}
             },
         ){
             Column {

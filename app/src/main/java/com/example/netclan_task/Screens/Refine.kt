@@ -69,8 +69,8 @@ fun RefineTopBar(navController: NavController) {
                 navigationIcon = {
                     IconButton(onClick = {
                         navController.navigate(Routes.BottomNav.routes){
-                            popUpTo("explore") {
-                                inclusive = false
+                            popUpTo("Refine") {
+                                inclusive = true
                             }
                         }
 
@@ -155,7 +155,9 @@ fun RefineContent(navController: NavController) {
         }
        ChipGrid()
         Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
-        Button(onClick = { navController.navigate(Routes.BottomNav.routes) }
+        Button(onClick = { navController.navigate(Routes.BottomNav.routes){
+            popUpTo("Refine")
+        } }
            ) {
             Text(text="save and explore")
 

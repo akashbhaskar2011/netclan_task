@@ -7,7 +7,9 @@ import androidx.navigation.compose.composable
 import com.example.netclan_task.Items.MyTab
 import com.example.netclan_task.Screens.Explore
 import com.example.netclan_task.Screens.MyBottomNav
+import com.example.netclan_task.Screens.ProfileScreen
 import com.example.netclan_task.Screens.RefineTopBar
+import com.example.netclan_task.Screens.SettingPage
 import com.example.netclan_task.Screens.Splash
 
 @Composable
@@ -37,5 +39,15 @@ fun NavGraph(navController:NavHostController){
         composable(Routes.Refine.routes){
             RefineTopBar(navController)
         }
+        composable(Routes.Profile.routes){
+            ProfileScreen(navController)
+        }
+        composable(Routes.Settings.routes){
+            SettingPage(navController)
+        }
     }
 }
+
+
+
+

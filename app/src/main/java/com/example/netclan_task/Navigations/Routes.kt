@@ -9,4 +9,6 @@ sealed class Routes(val routes: String) {
     object Splash:Routes(routes="Splash")
     object BottomNav:Routes(routes="BottomNav")
     object Refine:Routes(routes="Refine")
+    object Profile:Routes(routes="Profile")
+    object Settings:Routes(routes="Settings")
 }
