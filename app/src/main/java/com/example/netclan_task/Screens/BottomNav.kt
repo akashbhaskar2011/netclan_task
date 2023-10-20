@@ -1,6 +1,7 @@
 package com.example.netclan_task.Screens
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -34,11 +35,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.example.netclan_task.Items.MyTab
 import com.example.netclan_task.Items.NavDrawerItem
 import com.example.netclan_task.Model.DrawerItem
 import kotlinx.coroutines.CoroutineScope
@@ -49,6 +53,7 @@ fun MyBottomNav(navController :NavHostController) {
     val navController1= rememberNavController()
     Scaffold (
         topBar = {
+
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
         ModalNavigationDrawer(
@@ -57,13 +62,21 @@ fun MyBottomNav(navController :NavHostController) {
             drawerContent = {
                 ModalDrawerSheet { NavDrawerItem()}
             },
-        ){MyTopBar(navController,scope,drawerState)}
+        ){
+            Column {
+            MyTopBar(navController, scope, drawerState)
+                if (navController1.currentBackStackEntryAsState().value?.destination?.route == Routes.Explore.routes) {
+                    MyTab()
+                }
+        }
+
+           }
+
     },
         bottomBar = {MyBottomBar(navController1)}){innerPadding ->
     NavHost(navController = navController1, startDestination = Routes.Explore.routes,
         modifier = Modifier.padding(innerPadding))   {
         composable(route = Routes.Explore.routes){
-            Explore(navController)
         }
         composable(route = Routes.Chat.routes){
 
@@ -79,10 +92,44 @@ fun MyBottomNav(navController :NavHostController) {
     }
 }
 
+@Composable
+fun MyBottomBar(navController1: NavHostController){
+    val backStackEntry=navController1.currentBackStackEntryAsState()
+    val list=listOf(
+        BottomNavItem(title="Explore",routes=Routes.Explore.routes, Icons.Rounded.Home),
+        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.AccountBox),
+        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.AccountBox),
+        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.AccountBox),
+        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.AccountBox),
+    )
+    BottomAppBar{
+        list.forEach{
+            val selected:Boolean=it.routes==backStackEntry?.value?.destination?.route
+            NavigationBarItem(selected = selected,
+                onClick = {
+                    navController1.navigate(it.routes){
+                        popUpTo(navController1.graph.findStartDestination().id){
+                            saveState=true
+                        }
+                        launchSingleTop=true
+                    }
+                }, icon = {
+                    Column {
+                        Icon(imageVector = it.icon, contentDescription =it.title )
+                        Text(text = it.title)
+                    }
+
+                })
+        }
+    }
+}
+
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyTopBar(navController: NavHostController, scope: CoroutineScope, drawerState: DrawerState) {
+
 
     TopAppBar(
         colors = TopAppBarDefaults.smallTopAppBarColors(
@@ -134,38 +181,3 @@ fun MyTopBar(navController: NavHostController, scope: CoroutineScope, drawerStat
 
     )
 }
-
-// This is comment on dummy error branch
-@Composable
-fun MyBottomBar(navController1: NavHostController){
-    val backStackEntry=navController1.currentBackStackEntryAsState()
-    val list=listOf(
-        BottomNavItem(title="Explore",routes=Routes.Explore.routes, Icons.Rounded.Home),
-        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.AccountBox),
-        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.AccountBox),
-        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.AccountBox),
-        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.AccountBox),
-    )
-    BottomAppBar{
-        list.forEach{
-            val selected:Boolean=it.routes==backStackEntry?.value?.destination?.route
-            NavigationBarItem(selected = selected,
-                onClick = {
-                    navController1.navigate(it.routes){
-                        popUpTo(navController1.graph.findStartDestination().id){
-                            saveState=true
-                        }
-                        launchSingleTop=true
-                    }
-                }, icon = {
-                    Column {
-                        Icon(imageVector = it.icon, contentDescription =it.title )
-                        Text(text = it.title)
-                    }
-
-                })
-        }
-    }
-}
-
-
