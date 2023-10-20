@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.netclan_task"
-        minSdk = 22
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -60,6 +60,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.android.car.ui:car-ui-lib:2.5.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -68,8 +69,8 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-
-    implementation ("androidx.paging:paging-compose:1.0.0-alpha13")  // Use the latest version
+    implementation ("com.google.accompanist:accompanist-pager:0.13.0")
+    implementation ("com.google.accompanist:accompanist-pager-indicators:0.13.0")
 
     implementation ("androidx.drawerlayout:drawerlayout:1.2.0")
     implementation ("androidx.navigation:navigation-compose:2.7.4")
