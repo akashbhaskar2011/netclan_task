@@ -20,49 +20,138 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 
+
+
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MyTab() {
     var selectedTabIndex by remember {
         mutableIntStateOf(0)
     }
-    val tabItems = listOf("home", "2ndpage", "3rd page")
-    val pagerState= rememberPagerState(pageCount =tabItems.size)
 
-    LaunchedEffect(selectedTabIndex ){
+    val tabItems = listOf("home", "2ndpage", "3rd page")
+    val pagerState = rememberPagerState(pageCount = tabItems.size)
+
+    LaunchedEffect(selectedTabIndex) {
         pagerState.animateScrollToPage(selectedTabIndex)
     }
 
-
-    LaunchedEffect(pagerState.currentPage ,pagerState.isScrollInProgress ){
-    if (!pagerState.isScrollInProgress){
-       selectedTabIndex=pagerState.currentPage}
+    LaunchedEffect(pagerState.currentPage, pagerState.isScrollInProgress) {
+        if (!pagerState.isScrollInProgress) {
+            selectedTabIndex = pagerState.currentPage
+        }
     }
 
-//    Column() {
+    Column {
         TabRow(selectedTabIndex = selectedTabIndex) {
             tabItems.forEachIndexed { index, item ->
                 Tab(
                     selected = index == selectedTabIndex,
                     onClick = {
                         selectedTabIndex = index
+
                     },
                     text = { Text(text = item) }
                 )
             }
         }
-       HorizontalPager(state = pagerState) {index->
-           Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
-Text(text = tabItems[index])
-           }
 
-           
-       }
-//    }
+        HorizontalPager(state = pagerState) { index ->
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(text = tabItems[index])
+            }
+        }
+    }
 }
+
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+fun MyTab2() {
+    var selectedTabIndex by remember {
+        mutableIntStateOf(0)
+    }
+
+    val tabItems = listOf("home", "2ndpage", "3rd page", "p4", "p5")
+    val pagerState = rememberPagerState(pageCount = tabItems.size)
+
+    LaunchedEffect(selectedTabIndex) {
+        pagerState.animateScrollToPage(selectedTabIndex)
+    }
+
+    LaunchedEffect(pagerState.currentPage, pagerState.isScrollInProgress) {
+        if (!pagerState.isScrollInProgress) {
+            selectedTabIndex = pagerState.currentPage
+        }
+    }
+
+    Column {
+        TabRow(selectedTabIndex = selectedTabIndex) {
+            tabItems.forEachIndexed { index, item ->
+                Tab(
+                    selected = index == selectedTabIndex,
+                    onClick = {
+                        selectedTabIndex = index
+
+                    },
+                    text = { Text(text = item) }
+                )
+            }
+        }
+
+        HorizontalPager(state = pagerState) { index ->
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(text = tabItems[index])
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+fun HandleSwipe(){
+
+        var selectedTabIndex by remember {
+            mutableIntStateOf(0)
+        }
+
+        val tabItems = listOf(MyTab(), MyTab2())
+        val pagerState = rememberPagerState(pageCount = 2)
+
+        LaunchedEffect(selectedTabIndex) {
+            pagerState.animateScrollToPage(selectedTabIndex)
+        }
+
+        LaunchedEffect(pagerState.currentPage, pagerState.isScrollInProgress) {
+            if (!pagerState.isScrollInProgress) {
+                selectedTabIndex = pagerState.currentPage
+            }
+        }
+
+
+
+            HorizontalPager(state = pagerState) { index ->
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text(text = "1"+index)
+                }
+            }
+        }
+
+
 
 @Preview
 @Composable
-fun pre1(){
+fun pre1() {
     MyTab()
 }
+
+

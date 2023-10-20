@@ -43,6 +43,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.example.netclan_task.Items.MyTab
+import com.example.netclan_task.Items.MyTab2
 import com.example.netclan_task.Items.NavDrawerItem
 import com.example.netclan_task.Model.DrawerItem
 import kotlinx.coroutines.CoroutineScope
@@ -67,6 +68,9 @@ fun MyBottomNav(navController :NavHostController) {
             MyTopBar(navController, scope, drawerState)
                 if (navController1.currentBackStackEntryAsState().value?.destination?.route == Routes.Explore.routes) {
                     MyTab()
+                }
+                else if (navController1.currentBackStackEntryAsState().value?.destination?.route == Routes.Chat.routes) {
+                    MyTab2()
                 }
         }
 
@@ -107,6 +111,7 @@ fun MyBottomBar(navController1: NavHostController){
             val selected:Boolean=it.routes==backStackEntry?.value?.destination?.route
             NavigationBarItem(selected = selected,
                 onClick = {
+
                     navController1.navigate(it.routes){
                         popUpTo(navController1.graph.findStartDestination().id){
                             saveState=true
@@ -180,4 +185,10 @@ fun MyTopBar(navController: NavHostController, scope: CoroutineScope, drawerStat
         }
 
     )
+}
+
+
+@Composable
+fun HandleSwipe(){
+
 }
