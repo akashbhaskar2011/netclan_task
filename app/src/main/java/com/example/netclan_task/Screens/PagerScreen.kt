@@ -3,7 +3,10 @@ package com.example.netclan_task.Screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.Text
@@ -17,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
@@ -42,7 +46,7 @@ fun MyTab() {
         }
     }
 
-    Column(modifier = Modifier.background(color = Color.LightGray)) {
+    Column(modifier = Modifier.background(color = Color.White)) {
         TabRow(selectedTabIndex = selectedTabIndex) {
             tabItems.forEachIndexed { index, item ->
                 Tab(
@@ -58,10 +62,16 @@ fun MyTab() {
         }
 
         HorizontalPager(state = pagerState) { index ->
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Column(modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 10.dp, bottom = 80.dp)) {
+                when (index){
+                    0-> Personal()
+                    1-> Business()
+                    2->Merchant()
+                }
+//                Spacer(modifier = Modifier.height(1000.dp))
 
-                Explore()
-                Text(text = tabItems[index])
             }
         }
     }

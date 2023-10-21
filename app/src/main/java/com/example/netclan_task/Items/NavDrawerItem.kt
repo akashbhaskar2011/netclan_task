@@ -48,7 +48,7 @@ fun ClickableListItem(item: ListItem) {
             Spacer(modifier = Modifier.height(20.dp))
             Icon(imageVector = item.icon, contentDescription = null)
 
-            Text(text = item.name, style = TextStyle(fontSize = 20.sp, color = Color.White))
+            Text(text = item.name, style = TextStyle(fontSize = 20.sp, color = Color.Black))
         }
     }
 }
@@ -67,6 +67,8 @@ fun ScrollableItemListPreview() {
         ListItem("Item 4", Icons.Default.Close),
         ListItem("Item 5", Icons.Default.Add)
     )
+Column(modifier=Modifier.padding(bottom = 80.dp)) {
 
     ScrollableItemList(items)
+}
 }

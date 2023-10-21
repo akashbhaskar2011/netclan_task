@@ -158,6 +158,7 @@ fun RefineContent(navController: NavController) {
         Button(onClick = { navController.navigate(Routes.BottomNav.routes){
             popUpTo("Refine")
         } }
+
            ) {
             Text(text="save and explore")
 
