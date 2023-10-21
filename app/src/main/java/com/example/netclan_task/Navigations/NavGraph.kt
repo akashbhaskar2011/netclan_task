@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.netclan_task.Items.MyTab
+import com.example.netclan_task.Screens.MyTab
 import com.example.netclan_task.Screens.Explore
 import com.example.netclan_task.Screens.MyBottomNav
 import com.example.netclan_task.Screens.ProfileScreen
