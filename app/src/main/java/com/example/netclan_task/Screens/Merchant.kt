@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -12,10 +13,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -71,13 +77,62 @@ fun MerchantItems(){
                 Column (modifier=Modifier.padding(start=90.dp)){
                     Text(text = "userNamr")
                     Text(text = "Location|workfield")
-                    Text(text = "distance 200km")
+
                     LinearProgressIndicator(
                         progress = 0.7f, modifier = Modifier
-                            .height(5.dp)
+                            .height(7.dp)
                             .width(80.dp)
-                            .clip(RoundedCornerShape(5.dp))
+                            .clip(RoundedCornerShape(7.dp))
                     )
+
+                    Row {
+
+
+                        // Call Icon
+                        Icon(
+                            imageVector = Icons.Default.Phone,
+                            contentDescription = "Call Icon",
+                            tint = Color.Blue, // Change the color of the call icon (e.g., Blue)
+                            modifier = Modifier
+                                .size(30.dp)
+                                .clickable {
+
+
+                                }
+                        )
+
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        // Profile Icon
+                        Icon(
+                            imageVector = Icons.Default.AccountCircle,
+                            contentDescription = "Profile Icon",
+                            modifier = Modifier
+                                .padding(start = 10.dp)
+                                .size(30.dp)
+                                .clickable {
+                                    // Add the action to open the profile screen here
+                                }
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        Icon(
+                            imageVector = Icons.Default.LocationOn,
+                            contentDescription = "Profile Icon",
+                            modifier = Modifier
+                                .padding(start = 10.dp)
+                                .size(30.dp)
+                                .clickable {
+                                    // Add the action to open the profile screen here
+                                }
+                        )
+                    }
+
+
+
+
+
+
                 }
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(text = "Coffee |Business|fiendship")
@@ -113,5 +168,7 @@ fun MerchantItems(){
 @Preview
 @Composable
 fun Merpre(){
-   BusinessItems()
+   Merchant()
+
+
 }

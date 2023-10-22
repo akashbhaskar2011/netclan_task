@@ -68,9 +68,9 @@ fun PersonalItems(){
                     Text(text = "distance 200km")
                     LinearProgressIndicator(
                         progress = 0.7f, modifier = Modifier
-                            .height(5.dp)
+                            .height(7.dp)
                             .width(80.dp)
-                            .clip(RoundedCornerShape(5.dp))
+                            .clip(RoundedCornerShape(20.dp))
                     )
                 }
                 Spacer(modifier = Modifier.height(10.dp))

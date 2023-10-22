@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CardDefaults
@@ -51,24 +52,7 @@ import com.google.android.material.search.SearchBar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Business(){
-//    Row (modifier=Modifier.padding(start=10.dp,end=10.dp)){
-//        SearchBar(
-//            modifier = Modifier
-//                .align(Alignment.TopCenter)
-//                .semantics { traversalIndex = -1f },
-//            query = text,
-//            onQueryChange = { text = it },
-//            onSearch = { active = false },
-//            active = active,
-//            onActiveChange = {
-//                active = it
-//            },
-//            placeholder = { Text("Hinted search text") },
-//            leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-//        )
-//        Spacer(modifier = Modifier.height(5.dp))
-//
-//    }
+
 
     LazyColumn {
         items(5) { index ->
@@ -108,12 +92,11 @@ fun BusinessItems(){
                 Column (modifier=Modifier.padding(start=90.dp)){
                     Text(text = "userNamr")
                     Text(text = "Location|workfield")
-                    Text(text = "distance 200km")
                     LinearProgressIndicator(
                         progress = 0.7f, modifier = Modifier
-                            .height(5.dp)
+                            .height(7.dp)
                             .width(80.dp)
-                            .clip(RoundedCornerShape(5.dp))
+                            .clip(RoundedCornerShape(20.dp))
                     )
                     Row {
 
@@ -144,6 +127,9 @@ fun BusinessItems(){
                                     // Add the action to open the profile screen here
                                 }
                         )
+                        Spacer(modifier = Modifier.height(10.dp))
+
+
 
 
                     }
