@@ -1,10 +1,15 @@
 package com.example.netclan_task.Screens
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material3.Text
 
 import androidx.compose.runtime.Composable
@@ -15,10 +20,15 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.netclan_task.Model.BottomNavItem
 import com.example.netclan_task.Navigations.Routes
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.rounded.AccountBox
+import androidx.compose.material.icons.rounded.Face
 import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.MailOutline
+import androidx.compose.material.icons.rounded.Phone
+import androidx.compose.material.icons.sharp.AccountCircle
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
@@ -41,7 +51,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import com.example.netclan_task.Items.FloatingItems
 import com.example.netclan_task.Screens.MyTab
 import com.example.netclan_task.Screens.MyTab2
 //import com.example.netclan_task.Items.NavDrawerItem
@@ -77,20 +89,32 @@ fun MyBottomNav(navController :NavHostController) {
            }
 
     },
-        bottomBar = {MyBottomBar(navController1)}){innerPadding ->
+        bottomBar = {MyBottomBar(navController1)},
+        floatingActionButton = (
+                { FloatingItems() }
+
+
+
+
+
+                ))
+    {innerPadding ->
     NavHost(navController = navController1, startDestination = Routes.Explore.routes,
         modifier = Modifier.padding(innerPadding))   {
         composable(route = Routes.Explore.routes){
         }
         composable(route = Routes.Chat.routes){
+        }
+        composable(route = Routes.Networks.routes){
 
         }
-        composable(route = Routes.Chat.routes){
+        composable(route = Routes.Groups.routes){
 
         }
-        composable(route = Routes.Chat.routes){
+        composable(route = Routes.Contacts.routes){
 
         }
+
 
     }
     }
@@ -101,10 +125,11 @@ fun MyBottomBar(navController1: NavHostController){
     val backStackEntry=navController1.currentBackStackEntryAsState()
     val list=listOf(
         BottomNavItem(title="Explore",routes=Routes.Explore.routes, Icons.Rounded.Home),
-        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.AccountBox),
-        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.AccountBox),
-        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.AccountBox),
-        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.AccountBox),
+        BottomNavItem(title="Chat",routes=Routes.Chat.routes, Icons.Rounded.MailOutline),
+        BottomNavItem(title="Demo",routes=Routes.Networks.routes, Icons.Rounded.Face),
+
+        BottomNavItem(title="Demo",routes=Routes.Contacts.routes, Icons.Rounded.Phone),
+        BottomNavItem(title="demo",routes=Routes.Groups.routes, Icons.Sharp.AccountCircle),
     )
     BottomAppBar{
         list.forEach{
@@ -119,9 +144,11 @@ fun MyBottomBar(navController1: NavHostController){
                         launchSingleTop=true
                     }
                 }, icon = {
-                    Column {
+                    Column ( modifier = Modifier.fillMaxWidth(), // Center the column horizontally
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally){
                         Icon(imageVector = it.icon, contentDescription =it.title )
-                        Text(text = it.title)
+                        Text(text = it.title, fontSize = 10.sp)
                     }
 
                 })
@@ -142,7 +169,7 @@ fun MyTopBar(navController: NavHostController, scope: CoroutineScope, drawerStat
             titleContentColor = MaterialTheme.colorScheme.primary,
         ),
         title = {
-            Text("Howdy akash bhaskar!!\nBomanhalli", textAlign = TextAlign.Justify)
+            Text("Howdy akash bhaskar!!\nBomanhalli", textAlign = TextAlign.Justify, fontSize = 20.sp)
         },
 
         navigationIcon = {
@@ -172,14 +199,19 @@ fun MyTopBar(navController: NavHostController, scope: CoroutineScope, drawerStat
                 }
 
             }) {
-                Column {
-                    Icon(
-                        imageVector = Icons.Filled.DateRange,
-                        contentDescription = "Localized description",
 
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.DateRange,
+                            contentDescription = "Localized description"
                         )
-                    Text(text = "refine")
-                }
+                        Text(text = "refine", fontSize = 14.sp)
+                    }
+
+
             }
 
         }

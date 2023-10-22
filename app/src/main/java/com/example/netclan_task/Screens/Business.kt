@@ -157,7 +157,7 @@ fun BusinessItems(){
                 .width(300.dp)
                 .fillMaxSize()
             ,
-            painter = painterResource(id = R.drawable.profile),
+                painter = painterResource(id = R.drawable.backgrounimage),
             contentDescription = "profile image"
         )
         }
